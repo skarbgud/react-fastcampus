@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <div id="root"></div>
+    <script type="text/babel">
+        const rootElement = document.getElementById("root");
+        const paint = (title, description) => (
+            <>  
+                <h1>{title}</h1>
+                <h3>{description}</h3>
+            </>
+        );
+
+        /* 
+        Function - 재사용 가능한 Element
+        Custom Element - Upper case 
+        Children 제한 -> 없음 (무한대로 넣는대로 계속 넣을 수 있음)
+        */
+        // 대문자를 사용하면 기본 이미 잡혀있는 태그들(h1, p등등)들이 있어서 명시적으로 대문자를 사용한다.
+        const Paint = ({ title, description, children }) => (
+            <>  
+                <h1>{title}</h1>
+                <h3>{description}</h3>
+                {children}
+            </>
+        );
+
+        const Good = () => <h3>Good</h3>
+
+        const element = (
+            <>
+                <Paint title="good" description="good">
+                    <Paint title="Bad" description="bad"/>
+                    <Paint title="So so" description="so so"/>
+                    <span>Hi</span>
+                    <Good/>
+                    <Good/>
+                    <Good/>
+                    <Good/>
+                    <Good/>
+                </Paint>
+            </>
+        )
+        ReactDOM.render(element, rootElement);
+    </script>
+</body>
+
+</html>
