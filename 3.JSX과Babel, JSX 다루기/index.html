@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <div id="root"></div>
+    <script type="text/babel">
+        const rootElement = document.getElementById("root");
+        const element = React.createElement("h1", 
+        {
+            className: "title",
+            // children: ["Hello, world!", " It's me!", "good"]  // 배열로 넣으면 계속 들어 갈 수 있다.
+        },
+        ["Hello, world!", " It's me!", "good"]
+        // "Hello, world!?????" // 3번째 인자를 먼저 그린다
+        );
+
+        /*
+        JSX는 React.createElement 표현식이다.
+        Babel은 Javascript Complier이다.
+        */
+        const text = "Hello, world!"
+        const titleClassName = "title123"
+        const props = {className: titleClassName, children: text };
+        // const customH1 = <h1 className={titleClassName} children={text}/>
+        // const customH1 = <h1 {...props}/>; // spread 연산자
+        const customH1 = <h1 className={props.className} children={props.children}/>;
+        const jsx = customH1;
+        // ReactDOM.render(element, rootElement);
+        ReactDOM.render(jsx, rootElement);
+    </script>
+</body>
+
+</html>
