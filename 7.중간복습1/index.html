@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <div id="root"></div>
+        <script type="text/babel">
+            const rootElement = document.getElementById("root");
+            const Text = ({ text }) => {
+                // text가 대문자로 시작하면 h1, 소문자로 시작하면 h3
+                if (text.charAt(0) == text.charAt(0).toUpperCase()) {
+                    return (
+                        <h1> {/* jsx */}
+                            {text}  {/* js */}
+                        </h1> // jsx
+                    );
+                } else {
+                    return <h3>{text}</h3>;
+                }
+            };
+
+            function Number({ number, selected }) {
+                // return number % 2 == 0 ? <h1>{number}</h1> : <h3>{number}</h3>
+                return selected ? <h1>{number}</h1> : <h3>{number}</h3>
+            }
+
+            const element = (
+                <>
+                    {[1,2,3,4,5,6,7,8,9,10].map((number) => (
+                        <Number 
+                            className="title"
+                            key={number}
+                            number={number}
+                            selected={number == 3}
+                        />
+                    ))}
+                </>
+            )
+            ReactDOM.render(element, rootElement);
+        </script>
+    </body>
+</html>
