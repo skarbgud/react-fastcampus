@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <div id="root"></div>
+        <div id="time"></div>
+        <!-- 
+            React 엘리먼트는 불변객체(immutable)입니다.
+
+            불변객체란? 변하지 않는 객체
+            우리는 그저 ReactDOM.render(element, rootElement); 로 전달할뿐...
+            변경 판단 및 반영은 리액트가 알아서 한다.
+
+            엘리멘트 타입이 바뀌면 ? => 이전 엘리먼트는 버리고 새로 그린다.
+            엘리먼트 타입이 같다면 ? => (Key를 먼저 비교하고,) props를 비교해서 변경사항을 반영한다.
+         -->
+        <!-- React에서는 변경된 부분만 다시 그림-->
+        <script type="text/babel">
+            const rootElement = document.getElementById("root");
+
+            function random() {
+                const number = Math.floor(Math.random() * (10 - 1) + 1);
+                const element = (
+                    <>
+                        <button>{number}</button>
+                        <div>
+                            <p>{number}</p>
+                        </div>
+                    </>
+                );
+                ReactDOM.render(element, rootElement);
+            }
+
+            setInterval(random, 1000);
+
+            // 리액트 공식문서 예제
+            function tick() {
+            const element = (
+                    <div>
+                    <h1>Hello, world!</h1>
+                    <h2>It is {new Date().toLocaleTimeString()}.</h2>
+                    </div>
+                );
+                ReactDOM.render(element, document.getElementById('time'));
+            }
+
+            setInterval(tick, 1000);
+        </script>
+    </body>
+</html>
