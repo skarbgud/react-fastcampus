@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+        <!-- 바닐라 JS -->
+        <!-- <button id="button" onclick="document.getElementById('demo').innerHTML=Date()">The time is?</button>
+
+        <p id="demo"></p>
+        <script type="text/babel">
+          const button = document.getElementById("button");
+          button.addEventListener("mouseover", () => alert("bye"));
+          button.addEventListener("click", () => alert("press"));
+        </script> -->
+
+        <!-- React -->
+        <div id="root"></div>
+        <script type="text/babel">
+            const rootElement = document.getElementById("root");
+
+            const handleClick = () => alert("pressed");
+            const handleMouseOut = () => alert("bye");
+
+            const element = (
+                <button 
+                    onClick={handleClick}
+                    onMouseOut={handleMouseOut}
+                >
+                    Press
+                </button>
+            );
+            ReactDOM.render(element, rootElement);
+        </script>
+    </body>
+</html>
