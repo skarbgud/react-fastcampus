@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <div id="root"></div>
+        <script type="text/babel">
+            const rootElement = document.getElementById("root");
+
+            const App = () => {
+                // React.useState는 각각 독립적이다.
+                const [keyword, setKeyword] = React.useState("");
+                const [result, setResult] = React.useState("");
+                const [typing, setTyping] = React.useState(false);
+
+                
+                /*
+                const [keyword, setKeyword] = React.useState("");            
+                // 각각 배열을 받는것인데 아래를 위처럼 배열을 받는것이다.
+                const keywordState = React.useState("");
+                const keyword = keywordState[0];
+                const setKeyword = keywordState[1];
+                */
+
+                function handleChange(event) {
+                    setKeyword(event.target.value);
+                    setTyping(true);
+                }
+
+                function handleClick() {
+                    setTyping(false);
+                    setResult(`We find result of ${keyword}`);
+                }
+
+                return (
+                    <>
+                        <input onChange={handleChange}/>
+                        <button onClick={handleClick}>search</button>
+                        <p>
+                            {typing ? `Looking for ${keyword}... ` : result}
+                        </p>
+                    </>
+                )
+            };
+
+            ReactDOM.render(<App/>, rootElement);
+        </script>
+    </body>
+</html>
