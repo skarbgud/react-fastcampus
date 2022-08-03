@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <div id="root"></div>
+        <script type="text/babel">
+            const rootElement = document.getElementById("root");
+
+            const App = () => {
+                console.log("render");
+                const [keyword, setKeyword] = React.useState(() => {
+                    console.log('initialize');
+                    return window.localStorage.getItem("keyword")
+                });
+                const [result, setResult] = React.useState("");
+                const [typing, setTyping] = React.useState(false);
+                
+                // 반복되는 렌더를 keyword나 typing이 일어날때 변경사항이 바뀐다.
+                React.useEffect(() => {
+                    console.log("effect");
+                    window.localStorage.setItem("keyword", keyword);
+                }, [keyword, typing]);  // keyword, typing이 변화할 때만 keyword에 저장한다. [사이드 이펙트를 일으키고 싶은 대상] , 빈값이면 부수효과를 일으키고 싶은 대상
+
+                function handleChange(event) {
+                    setKeyword(event.target.value);
+                    setTyping(true);
+                }
+
+                function handleClick() {
+                    setTyping(false);
+                    setResult(`We find result of ${keyword}`);
+                }
+
+                return (
+                    <>
+                        <input onChange={handleChange} value={keyword}/>
+                        <button onClick={handleClick}>search</button>
+                        <p>
+                            {typing ? `Looking for ${keyword}... ` : result}
+                        </p>
+                    </>
+                )
+            };
+
+            ReactDOM.render(<App/>, rootElement);
+        </script>
+    </body>
+</html>
