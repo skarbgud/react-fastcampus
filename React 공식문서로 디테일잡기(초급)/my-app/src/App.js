@@ -1,4 +1,5 @@
 import './App.css';
+import UnControlledComponent from './components/2-10.Form/UnControlleredComponent';
 import ControlledComponent from './components/2-10.Form/ControlledComponent';
 // import List from './components/2-9.List/List';
 // import Condition from './components/2-8.ConditionalRendering/Condition';
@@ -12,6 +13,7 @@ import ControlledComponent from './components/2-10.Form/ControlledComponent';
 function App() {
   return (
     <div className="App">
+      <UnControlledComponent/>
       <ControlledComponent/>
       {/* <List /> */}
       {/* <Condition/> */}

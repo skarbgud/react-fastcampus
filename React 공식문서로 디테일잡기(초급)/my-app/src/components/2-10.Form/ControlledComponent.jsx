@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
 
 export default function ControlledComponent() {
-  const [name, setValue] = useState('');
+  const [name, setName] = useState('');
   const [essay, setEssay] = useState('Please write an essay about your');
   const [flavor, setFlavor] = useState('coconut');
 
   function handleChange(event) {
-    setValue(event.target.value);
+    const name = event.target.name;
+    if (name === 'name') {
+      setName(event.target.value);
+    }
+    if (name === 'essay') {
+      setEssay(event.target.value);
+    }
+    if (name === 'flavor') {
+      setFlavor(event.target.value);
+    }
   }
 
-  function handleEssayChange(event) {
-    setEssay(event.target.value);
-  }
-  
-  function handleFlavorChange(event) {
-    setFlavor(event.target.value);
-  }
+  // function handleEssayChange(event) {
+  //   setEssay(event.target.value);
+  // }
+
+  // function handleFlavorChange(event) {
+  //   setFlavor(event.target.value);
+  // }
 
   function handleSubmit(event) {
     alert(`name: ${name}, essay: ${essay}, flavor: ${flavor}`);
@@ -26,19 +35,19 @@ export default function ControlledComponent() {
     <form onSubmit={handleSubmit}>
       <label>
         Name:
-        <input type="text" value={name} onChange={handleChange} />
+        <input type="text" name="name" value={name} onChange={handleChange} />
       </label>
       <br />
       <br />
       <label>
         Essay:
-        <textarea value={essay} onChange={handleEssayChange} />
+        <textarea name="essay" value={essay} onChange={handleChange} />
       </label>
       <br />
       <br />
       <label>
         Pick your favorite flavor:
-        <select value={flavor} onChange={handleFlavorChange}>
+        <select name="flavor" value={flavor} onChange={handleChange}>
           <option value="grapefruit">Grapefruit</option>
           <option value="lime">Lime</option>
           <option value="coconut">Coconut</option>
